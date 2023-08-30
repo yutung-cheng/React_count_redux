@@ -1,57 +1,51 @@
-import React, { useState } from "react";
+import React from "react";
+import { useSelector, useDispatch } from "react-redux";
+import {
+  setSelectedNumber,
+  increment,
+  decrement,
+  incrementIfOdd,
+  incrementAsync,
+  reset,
+} from "../../redux/count_slicer";
 
 export default function Count() {
-  const [total, setTotal] = useState(0);
-  const [selectedNumber, setSelectedNumber] = useState(1); //default value is 1
-
-  //Handle selected number.
-  function handleChange(e) {
-    setSelectedNumber(Number(e.target.value));
-  }
-
-  // Increment
-  function increment() {
-    setTotal(total + selectedNumber);
-  }
-
-  // Decrement
-  const decrement = () => {
-    setTotal(total - selectedNumber);
-  };
-
-  // Increment if it's odd number
-  const incrementIfOdd = () => {
-    if (total & 1) {
-      setTotal(total + selectedNumber);
-    }
-  };
-
-  // Increment if async
-  const incrementAsync = () => {
-    setTimeout(() => {
-      setTotal(total + selectedNumber);
-    }, 500);
-  };
-
-  function reset() {
-    setTotal(0);
-    setSelectedNumber(1);
-  }
+  const dispatch = useDispatch();
+  const state = useSelector((state) => state.count);
 
   return (
     <div>
-      <h1>Current total: {total}</h1>
-      <select value={selectedNumber} onChange={handleChange}>
+      <h1>Current total: {state.value} </h1>
+      <select
+        value={state.selectedNumber}
+        onChange={(e) => dispatch(setSelectedNumber(e.target.value * 1))}
+      >
         <option value="1">1</option>
         <option value="2">2</option>
         <option value="3">3</option>
       </select>
       &nbsp; &nbsp;
-      <button onClick={increment}> + </button> &nbsp;
-      <button onClick={decrement}> - </button> &nbsp;
-      <button onClick={incrementIfOdd}>Increment Odd</button> &nbsp;
-      <button onClick={incrementAsync}>Increment Async</button> &nbsp;
-      <button onClick={reset}>Reset</button> &nbsp;
+      <button onClick={() => dispatch(increment(state.selectedNumber))}>
+        +
+      </button>
+      &nbsp;
+      <button onClick={() => dispatch(decrement(state.selectedNumber))}>
+        -
+      </button>
+      &nbsp;
+      <button
+        onClick={() =>
+          dispatch(incrementIfOdd(state.value, state.selectedNumber))
+        }
+      >
+        Increment Odd
+      </button>
+      &nbsp;
+      <button onClick={() => dispatch(incrementAsync(state.selectedNumber))}>
+        Increment Async
+      </button>
+      &nbsp;
+      <button onClick={() => dispatch(reset())}>Reset</button> &nbsp;
     </div>
   );
 }
