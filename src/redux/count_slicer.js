@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = { value: 0, selectedNumber: 1 };
+
 const countSlice = createSlice({
   name: "count",
   initialState,
@@ -11,20 +12,18 @@ const countSlice = createSlice({
     increment(state, action) {
       state.value += action.payload;
     },
-
     decrement(state, action) {
       state.value -= action.payload;
     },
-
     reset: () => initialState,
   },
 });
 
-export function incrementAsync(value) {
+export function incrementAsync(value, time) {
   return async (dispatch) => {
     setTimeout(() => {
       dispatch(increment(value));
-    }, 500);
+    }, time);
   };
 }
 

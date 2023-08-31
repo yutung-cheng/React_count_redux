@@ -41,7 +41,9 @@ export default function Count() {
         Increment Odd
       </button>
       &nbsp;
-      <button onClick={() => dispatch(incrementAsync(state.selectedNumber))}>
+      <button
+        onClick={() => dispatch(incrementAsync(state.selectedNumber, 2000))}
+      >
         Increment Async
       </button>
       &nbsp;
