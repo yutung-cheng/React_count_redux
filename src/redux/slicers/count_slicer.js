@@ -6,10 +6,15 @@ const countSlice = createSlice({
   name: "count",
   initialState,
   reducers: {
-    setSelectedNumber: (state, action) =>
-      (state.selectedNumber = action.payload),
-    increment: (state, action) => (state.value += action.payload),
-    decrement: (state, action) => (state.value -= action.payload),
+    setSelectedNumber: (state, action) => {
+      state.selectedNumber = action.payload;
+    },
+    increment: (state, action) => {
+      state.value += action.payload;
+    },
+    decrement: (state, action) => {
+      state.value -= action.payload;
+    },
     reset: () => initialState,
   },
 });
