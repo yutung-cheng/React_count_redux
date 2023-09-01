@@ -7,15 +7,20 @@ import {
   incrementIfOdd,
   incrementAsync,
   reset,
-} from "../../redux/count_slicer";
+} from "../../redux/slicers/count_slicer";
 
 export default function Count() {
-  const dispatch = useDispatch();
   const state = useSelector((state) => state.count);
+  const personState = useSelector((state) => state.persons);
+  const dispatch = useDispatch();
 
   return (
     <div>
-      <h1>Current total: {state.value} </h1>
+      <h1>Counter Component</h1>
+      <h3>
+        Current total: {state.value}. Total person in the list:{" "}
+        {personState.length}
+      </h3>
       <select
         value={state.selectedNumber}
         onChange={(e) => dispatch(setSelectedNumber(e.target.value * 1))}
@@ -42,7 +47,7 @@ export default function Count() {
       </button>
       &nbsp;
       <button
-        onClick={() => dispatch(incrementAsync(state.selectedNumber, 2000))}
+        onClick={() => dispatch(incrementAsync(state.selectedNumber, 1000))}
       >
         Increment Async
       </button>
