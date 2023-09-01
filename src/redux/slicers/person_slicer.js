@@ -2,13 +2,13 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = []; //No data in the array.
 
-const perplelice = createSlice({
-  name: "perple",
+const peoplelice = createSlice({
+  name: "people",
   initialState,
   reducers: {
-    addPerson: (state, action) => [...state, action.payload],
+    addPerson: (state, action) => [action.payload, ...state],
   },
 });
 
-export const { addPerson } = perplelice.actions;
-export default perplelice.reducer;
+export const { addPerson } = peoplelice.actions;
+export default peoplelice.reducer;

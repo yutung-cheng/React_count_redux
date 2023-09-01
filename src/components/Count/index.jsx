@@ -11,7 +11,7 @@ import {
 
 export default function Count() {
   const state = useSelector((state) => state.count);
-  const perpletate = useSelector((state) => state.perple);
+  const peopletate = useSelector((state) => state.people);
   const dispatch = useDispatch();
 
   return (
@@ -19,7 +19,7 @@ export default function Count() {
       <h1>Counter Component</h1>
       <h3>
         Current total: {state.value}. Total person in the list:{" "}
-        {perpletate.length}
+        {peopletate.length}
       </h3>
       <select
         value={state.selectedNumber}

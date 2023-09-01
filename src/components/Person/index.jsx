@@ -4,7 +4,7 @@ import { nanoid } from "nanoid";
 import { addPerson } from "../../redux/slicers/person_slicer";
 
 export default function Person() {
-  const perpletate = useSelector((state) => state.perple);
+  const peopletate = useSelector((state) => state.people);
   const countState = useSelector((state) => state.count);
   const dispatch = useDispatch();
 
@@ -44,9 +44,9 @@ export default function Person() {
       </button>
       &nbsp;
       <ul>
-        {perpletate.map((personObj) => (
+        {peopletate.map((personObj) => (
           <li key={personObj.id}>
-            name: {personObj.name} -- age: {personObj.age}
+            Name: {personObj.name} -- Age: {personObj.age}
           </li>
         ))}
       </ul>
